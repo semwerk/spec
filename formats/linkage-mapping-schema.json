@@ -1,0 +1,179 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://spec.semwerk.com/formats/linkage-mapping-schema.json",
+  "title": "Linkage Mapping",
+  "description": "Bidirectional mapping between code symbols and documentation assets",
+  "type": "object",
+  "required": ["version", "code_to_assets", "asset_to_code"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version",
+      "const": "1"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this mapping was first created (ISO 8601)"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this mapping was last updated (ISO 8601)"
+    },
+    "meta": {
+      "type": "object",
+      "description": "Optional metadata about this mapping",
+      "properties": {
+        "source": {
+          "type": "string",
+          "description": "How this mapping was generated (e.g. 'werkcode-analyzer', 'manual')"
+        }
+      }
+    },
+    "code_to_assets": {
+      "type": "object",
+      "description": "Mapping from code symbols to documentation assets",
+      "patternProperties": {
+        "^.+:.+$": {
+          "$ref": "#/definitions/CodeMapping"
+        }
+      }
+    },
+    "asset_to_code": {
+      "type": "object",
+      "description": "Reverse mapping from documentation to code",
+      "patternProperties": {
+        "^.+$": {
+          "$ref": "#/definitions/AssetMapping"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CodeMapping": {
+      "type": "object",
+      "required": ["assets"],
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "assets": {
+          "type": "array",
+          "description": "Documentation assets linked to this code symbol",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/Asset"
+          }
+        }
+      }
+    },
+    "Asset": {
+      "type": "object",
+      "required": ["path", "relevance", "doc_type"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Relative path to documentation file"
+        },
+        "segments": {
+          "type": "array",
+          "description": "Specific sections within the document",
+          "items": {
+            "$ref": "#/definitions/Segment"
+          }
+        },
+        "relevance": {
+          "type": "string",
+          "enum": ["primary", "supporting", "related"],
+          "description": "How relevant this doc is to the code symbol"
+        },
+        "doc_type": {
+          "type": "string",
+          "enum": [
+            "overview",
+            "howto",
+            "reference",
+            "tutorial",
+            "troubleshooting",
+            "faq",
+            "example",
+            "conceptual"
+          ],
+          "description": "Type of documentation"
+        }
+      }
+    },
+    "Segment": {
+      "type": "object",
+      "required": ["id", "heading", "lines"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this segment"
+        },
+        "heading": {
+          "type": "string",
+          "description": "Markdown heading (e.g. '## Authentication')"
+        },
+        "lines": {
+          "type": "array",
+          "description": "Line range [start, end], use [0, 0] if unknown",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "AssetMapping": {
+      "type": "object",
+      "required": ["code_refs"],
+      "properties": {
+        "code_refs": {
+          "type": "array",
+          "description": "Code references from this documentation",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/CodeRef"
+          }
+        }
+      }
+    },
+    "CodeRef": {
+      "type": "object",
+      "required": ["path", "functions", "lines"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Relative path to code file"
+        },
+        "functions": {
+          "type": "array",
+          "description": "List of function/method names",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "lines": {
+          "type": "array",
+          "description": "Line range [start, end], use [0, 0] if unknown",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}
