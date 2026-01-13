@@ -2,7 +2,7 @@
 
 **Status:** Draft  
 **Version:** 0.1.0  
-**Applies To:** `<!--werkcontext:segment ...-->` markers and `segment_ref` resolution  
+**Applies To:** `<!--semcontext:segment ...-->` markers and `segment_ref` resolution  
 **Goal:** Make segment version semantics explicit (latest + semver), with inline metadata as the canonical source.
 
 ## Scope
@@ -15,7 +15,7 @@
 Segments MAY declare version metadata directly in the start marker:
 
 ```md
-<!--werkcontext:segment start
+<!--semcontext:segment start
   key="overview"
   type="overview"
   audience="developer"
@@ -62,21 +62,21 @@ Validators SHOULD enforce:
 
 Exact version:
 ```md
-<!--werkcontext:segment start key="install" version="1.3.0" audience="developer"-->
+<!--semcontext:segment start key="install" version="1.3.0" audience="developer"-->
 Install instructions for v1.3.0
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 Version range:
 ```md
-<!--werkcontext:segment start key="api-auth" version_range="^2.0.0" audience="developer"-->
+<!--semcontext:segment start key="api-auth" version_range="^2.0.0" audience="developer"-->
 Auth details for all 2.x versions
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 Inherit document version:
 ```md
-<!--werkcontext:segment start key="overview" type="overview"-->
+<!--semcontext:segment start key="overview" type="overview"-->
 Overview inherits the doc/version folder (e.g., latest).
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```

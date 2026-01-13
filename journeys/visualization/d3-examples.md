@@ -14,7 +14,7 @@ Convert journey YAML to D3 graph format:
 ### TypeScript Converter
 
 ```typescript
-import { Journey } from '@semwerk/werkspec';
+import { Journey } from '@semwerk/semspec';
 
 interface D3Node {
   id: string;

@@ -4,7 +4,7 @@
 **Status:** Draft
 **Format:** JSON
 
-<!--werkcontext:segment start key="overview" type="overview" audience="developer"-->
+<!--semcontext:segment start key="overview" type="overview" audience="developer"-->
 ## Overview
 
 External annotation files (`.semwerk.anno.json`) provide an alternative to inline segment markers and frontmatter for annotating content. Placed alongside the original file, they define segments without modifying the source.
@@ -21,9 +21,9 @@ External annotation files (`.semwerk.anno.json`) provide an alternative to inlin
 - `README.md` → `README.md.semwerk.anno.json`
 - `api.json` → `api.json.semwerk.anno.json`
 - `diagram.png` → `diagram.png.semwerk.anno.json`
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="format" type="reference" audience="developer"-->
+<!--semcontext:segment start key="format" type="reference" audience="developer"-->
 ## Format Schema
 
 ### Complete Schema (All Fields)
@@ -253,9 +253,9 @@ External annotation files (`.semwerk.anno.json`) provide an alternative to inlin
   }
 }
 ```
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="examples" type="example" audience="developer"-->
+<!--semcontext:segment start key="examples" type="example" audience="developer"-->
 ## Examples
 
 ### Markdown File Annotation
@@ -480,9 +480,9 @@ External annotation files (`.semwerk.anno.json`) provide an alternative to inlin
   }
 }
 ```
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="precedence" type="reference" audience="developer"-->
+<!--semcontext:segment start key="precedence" type="reference" audience="developer"-->
 ## Annotation Method Precedence
 
 When multiple annotation methods exist for the same file:
@@ -503,9 +503,9 @@ When multiple annotation methods exist for the same file:
 
 File has inline marker:
 ```markdown
-<!--werkcontext:segment start key="overview" type="overview"-->
+<!--semcontext:segment start key="overview" type="overview"-->
 ## Overview
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 External annotation also defines "overview":
@@ -518,9 +518,9 @@ External annotation also defines "overview":
 ```
 
 **Result:** Inline marker wins (type: `overview`, not `reference`)
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="parser-integration" type="howto" audience="developer"-->
+<!--semcontext:segment start key="parser-integration" type="howto" audience="developer"-->
 ## Parser Integration
 
 ### Discovery Algorithm
@@ -561,7 +561,7 @@ function findSegmentAnnotations(filePath: string): SegmentSource {
 ### Loading External Annotations
 
 ```typescript
-import { parseExternalAnnotations } from '@semwerk/werkspec';
+import { parseExternalAnnotations } from '@semwerk/semspec';
 
 const annotations = parseExternalAnnotations('README.md.semwerk.anno.json');
 
@@ -598,7 +598,7 @@ for (const segment of annotations.segments) {
 ### Python Example
 
 ```python
-from werkspec import parse_external_annotations
+from semspec import parse_external_annotations
 
 annotations = parse_external_annotations('README.md.semwerk.anno.json')
 
@@ -622,7 +622,7 @@ for segment in annotations.segments:
 ### Go Example
 
 ```go
-import "github.com/semwerk/werkspec-go/annotations"
+import "github.com/semwerk/semspec-go/annotations"
 
 anno, err := annotations.Parse("README.md.semwerk.anno.json")
 if err != nil {
@@ -649,9 +649,9 @@ for _, segment := range anno.Segments {
     }
 }
 ```
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="benefits-tradeoffs" type="reference" audience="developer,engineering"-->
+<!--semcontext:segment start key="benefits-tradeoffs" type="reference" audience="developer,engineering"-->
 ## Benefits and Tradeoffs
 
 ### Inline Markers (Preferred)
@@ -697,9 +697,9 @@ for _, segment := range anno.Segments {
 1. Use **inline markers** when possible (preferred)
 2. Use **frontmatter** for static sites with frontmatter support
 3. Use **external annotations** only when you can't modify source file
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="use-cases" type="howto" audience="developer"-->
+<!--semcontext:segment start key="use-cases" type="howto" audience="developer"-->
 ## Use Cases
 
 ### 1. Third-Party Documentation
@@ -759,9 +759,9 @@ api-v1.json.semwerk.anno.json            # v1 annotations
 api-v2.json
 api-v2.json.semwerk.anno.json            # v2 annotations (different segments)
 ```
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="validation" type="reference" audience="developer"-->
+<!--semcontext:segment start key="validation" type="reference" audience="developer"-->
 ## Validation
 
 ### Schema Validation
@@ -865,7 +865,7 @@ if (segment.byte_range) {
   }
 }
 ```
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
 ## See Also
 

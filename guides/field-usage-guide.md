@@ -3,7 +3,7 @@
 **Version:** 1.0.0
 **Status:** Draft
 
-<!--werkcontext:segment start key="overview" type="overview" audience="developer,product"-->
+<!--semcontext:segment start key="overview" type="overview" audience="developer,product"-->
 ## Overview
 
 Comprehensive guide to every field in Semwerk specifications: what it is, why you need it, how to use it, what outcome you achieve, and when to use it.
@@ -20,9 +20,9 @@ Comprehensive guide to every field in Semwerk specifications: what it is, why yo
 - **How** - Practical implementation examples
 - **Outcome** - What you achieve by using it
 - **Situations** - All possible scenarios where you'd use it
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="segment-id" type="reference" audience="developer"-->
+<!--semcontext:segment start key="segment-id" type="reference" audience="developer"-->
 ## Segment ID
 
 ### Concept
@@ -40,15 +40,15 @@ Unique identifier for a content segment within a document.
 
 **Inline marker:**
 ```markdown
-<!--werkcontext:segment start key="oauth-setup"-->
+<!--semcontext:segment start key="oauth-setup"-->
 ## OAuth Setup
 ...
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 **Frontmatter:**
 ```yaml
-werkcontext:
+semcontext:
   segments:
     - id: oauth-setup
 ```
@@ -107,9 +107,9 @@ code_to_assets:
 - Be specific: `stripe-webhook-setup` not `setup`
 - Keep stable: Don't change IDs when refactoring content
 - Use hierarchy: `auth.oauth.setup` for nested concepts (in concepts field, not ID)
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="segment-type" type="reference" audience="developer"-->
+<!--semcontext:segment start key="segment-type" type="reference" audience="developer"-->
 ## Segment Type
 
 ### Concept
@@ -127,7 +127,7 @@ Classification of content segment (overview, howto, reference, tutorial, etc.)
 
 **Inline marker:**
 ```markdown
-<!--werkcontext:segment start key="setup" type="howto"-->
+<!--semcontext:segment start key="setup" type="howto"-->
 ```
 
 **Frontmatter:**
@@ -194,9 +194,9 @@ segments:
 - Using `reference` for tutorials (confuses users)
 - Using `tutorial` for API reference (wrong UI)
 - Inconsistent types (same content, different types in different docs)
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="audience-role" type="reference" audience="developer"-->
+<!--semcontext:segment start key="audience-role" type="reference" audience="developer"-->
 ## Audience Role
 
 ### Concept
@@ -214,12 +214,12 @@ Target user role(s) for content segment.
 
 **Inline marker:**
 ```markdown
-<!--werkcontext:segment start key="api-ref" type="reference" audience="developer"-->
+<!--semcontext:segment start key="api-ref" type="reference" audience="developer"-->
 ```
 
 **Multiple audiences:**
 ```markdown
-<!--werkcontext:segment start key="deploy" type="howto" audience="developer,operator"-->
+<!--semcontext:segment start key="deploy" type="howto" audience="developer,operator"-->
 ```
 
 **Frontmatter:**
@@ -333,9 +333,9 @@ Business roles:
 - Too many roles on one segment (probably needs splitting)
 - Inconsistent role naming (use taxonomy)
 - Using roles for authorization (use separate access control system)
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="concepts" type="reference" audience="developer"-->
+<!--semcontext:segment start key="concepts" type="reference" audience="developer"-->
 ## Concepts
 
 ### Concept
@@ -488,9 +488,9 @@ payment-processing (depends on) → authentication
 - Using concepts as keywords (duplicating title words)
 - Inconsistent concept naming (`oauth` vs. `OAuth` vs. `oauth2`)
 - Not using concept relationships (flat taxonomy)
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="boost" type="reference" audience="developer"-->
+<!--semcontext:segment start key="boost" type="reference" audience="developer"-->
 ## Boost
 
 ### Concept
@@ -651,9 +651,9 @@ function getDynamicBoost(segment, userContext) {
 - Everything boost 2.0 (defeats purpose)
 - Boost 0.0 (just delete it)
 - Inconsistent boosting (similar sections, vastly different boosts)
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="max-tokens" type="reference" audience="developer"-->
+<!--semcontext:segment start key="max-tokens" type="reference" audience="developer"-->
 ## Max Tokens (return.max_tokens)
 
 ### Concept
@@ -812,9 +812,9 @@ function getEffectiveMaxTokens(segment, context) {
 - max_tokens < segment actual size (constant truncation, missing context)
 - max_tokens too large (defeats purpose)
 - Same max_tokens for all segments (some need more, some less)
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="min-tokens" type="reference" audience="developer"-->
+<!--semcontext:segment start key="min-tokens" type="reference" audience="developer"-->
 ## Min Tokens (return.min_tokens)
 
 ### Concept
@@ -960,7 +960,7 @@ return:
 - `min_tokens > max_tokens` (impossible to satisfy)
 - `min_tokens` too high (excludes valid short content)
 - Same `min_tokens` for all types (FAQs can be short, tutorials should be long)
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
 ## See Also
 
@@ -968,7 +968,7 @@ return:
 - [content:@doc-frontmatter/overview](#) - Frontmatter schema
 - [content:@doc-aggregation/overview](#) - Rollup and aggregation
 
-<!--werkcontext:segment start key="byte-line-range" type="reference" audience="developer"-->
+<!--semcontext:segment start key="byte-line-range" type="reference" audience="developer"-->
 ## Byte Range / Line Range
 
 ### Concept
@@ -1030,7 +1030,7 @@ const content = source.substring(byteRange.start, byteRange.end);
 - Entire file is one segment
 
 **Prefer line_range for text** - More maintainable, survives minor edits better.
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
 ## Complete Field Matrix
 

@@ -22,7 +22,7 @@ Frontmatter appears at the start of markdown files between `---` delimiters:
 ---
 template_id: @mytemplate
 
-werkcontext:
+semcontext:
   segments:
     - id: overview
       type: overview
@@ -45,7 +45,7 @@ Your markdown content here...
 ```yaml
 template_id: <string>           # Optional template identifier
 
-werkcontext:
+semcontext:
   semantics:                    # Content-level semantic entities (optional)
     tasks: [<task-ref>]
     problems: [<problem-ref>]
@@ -132,7 +132,7 @@ See [Segment Taxonomy](../taxonomies/segments.md) for complete list.
 
 ```yaml
 ---
-werkcontext:
+semcontext:
   semantics:
     tasks: [task:@stsk_quickstart]
     personas: [persona:@per_developer]
@@ -157,7 +157,7 @@ Install and run in 5 minutes...
 ---
 template_id: @api-reference
 
-werkcontext:
+semcontext:
   semantics:
     features: [feature:@sftr_api_v2, feature:@sftr_auth_system]
     personas: [persona:@per_backend_dev]
@@ -210,27 +210,27 @@ werkcontext:
 
 # API Documentation
 
-<!--werkcontext:segment start key="authentication"-->
+<!--semcontext:segment start key="authentication"-->
 ## Authentication
 ...
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="authorization"-->
+<!--semcontext:segment start key="authorization"-->
 ## Authorization
 ...
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="examples"-->
+<!--semcontext:segment start key="examples"-->
 ## Examples
 ...
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 ### Multi-Audience Documentation
 
 ```yaml
 ---
-werkcontext:
+semcontext:
   segments:
     - id: user-guide
       type: howto
@@ -256,7 +256,7 @@ werkcontext:
 
 ```yaml
 ---
-werkcontext:
+semcontext:
   segments:
     - id: overview
       type: overview
@@ -281,7 +281,7 @@ fm = parse_frontmatter('docs/api.md')
 
 # Find segments for developers
 dev_segments = [
-    s for s in fm.werkcontext.segments
+    s for s in fm.semcontext.segments
     if 'developer' in s.get('audience_role', [])
 ]
 
@@ -298,7 +298,7 @@ for seg in dev_segments:
 const fm = parseFrontmatter(markdown);
 if (fm.template_id === '@api-reference') {
   // Use API reference template
-  generateWithTemplate(fm.template_id, fm.werkcontext.segments);
+  generateWithTemplate(fm.template_id, fm.semcontext.segments);
 }
 ```
 
@@ -309,7 +309,7 @@ if (fm.template_id === '@api-reference') {
 auth_docs = []
 for doc in all_docs:
     fm = parse_frontmatter(doc)
-    for seg in fm.werkcontext.segments:
+    for seg in fm.semcontext.segments:
         if 'auth' in seg.get('concepts', []):
             auth_docs.append((doc, seg))
 ```
@@ -339,9 +339,9 @@ The frontmatter YAML must:
 
 ## Tools
 
-- **werkspec-ts**: Parse/validate frontmatter
-- **werkspec-python**: Python parser
-- **werkspec-go**: Go parser
+- **semspec-ts**: Parse/validate frontmatter
+- **semspec-python**: Python parser
+- **semspec-go**: Go parser
 
 ## See Also
 

@@ -16,7 +16,7 @@ The Linkage Mapping format defines a bidirectional mapping between code symbols 
 
 ## File Location
 
-`.werkcontext/linkage.yaml`
+`.semcontext/linkage.yaml`
 
 This file should be committed to version control and maintained alongside your codebase.
 
@@ -127,7 +127,7 @@ version: "1"
 created_at: 2026-01-10T00:00:00Z
 updated_at: 2026-01-10T00:00:00Z
 meta:
-  source: "werkcode-analyzer"
+  source: "semcode-analyzer"
 
 code_to_assets:
   "pkg/parser/ast.go:Parse":
@@ -194,7 +194,7 @@ asset_to_code:
 
 ```typescript
 // Parse linkage.yaml
-const linkage = parseLinkage('.werkcontext/linkage.yaml');
+const linkage = parseLinkage('.semcontext/linkage.yaml');
 
 // User clicks on function name in editor
 const symbol = 'src/auth/login.go:Authenticate';
@@ -213,7 +213,7 @@ docs.assets.forEach(asset => {
 all_functions = find_exported_functions()
 
 # Check linkage
-linkage = parse_linkage('.werkcontext/linkage.yaml')
+linkage = parse_linkage('.semcontext/linkage.yaml')
 documented = set(linkage['code_to_assets'].keys())
 
 # Report coverage
@@ -292,9 +292,9 @@ code_to_assets:
 
 ## Tools
 
-- **werkspec-ts**: TypeScript parser/validator
-- **werkspec-python**: Python parser/validator
-- **werkspec-go**: Go parser/validator
+- **semspec-ts**: TypeScript parser/validator
+- **semspec-python**: Python parser/validator
+- **semspec-go**: Go parser/validator
 
 ## See Also
 

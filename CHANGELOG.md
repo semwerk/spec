@@ -48,9 +48,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unified Coordinate System: `type:@id[@version][/segment[.subheading]][#checksum]`
 
 **Reference Implementations:**
-- werkspec-ts (TypeScript/npm) with tests
-- werkspec-python (Python/pip) with tests
-- werkspec-go (Go module) with tests
+- semspec-ts (TypeScript/npm) with tests
+- semspec-python (Python/pip) with tests
+- semspec-go (Go module) with tests
 
 ## [0.1.0] - 2026-01-10
 

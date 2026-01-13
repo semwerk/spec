@@ -86,10 +86,10 @@ audience_role: [developer, operator]  # For both devs and ops
 ```
 
 ```markdown
-<!--werkcontext:segment start key="deployment" audience="developer,operator"-->
+<!--semcontext:segment start key="deployment" audience="developer,operator"-->
 ## Deployment Guide
 ...
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 ## Role Hierarchies
@@ -118,7 +118,7 @@ administrative
 
 ```yaml
 ---
-werkcontext:
+semcontext:
   segments:
     - id: getting-started
       type: tutorial
@@ -137,13 +137,13 @@ werkcontext:
 ### In Segment Markers
 
 ```markdown
-<!--werkcontext:segment start key="user-guide" audience="user"-->
+<!--semcontext:segment start key="user-guide" audience="user"-->
 For end users
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="dev-guide" audience="developer,operator"-->
+<!--semcontext:segment start key="dev-guide" audience="developer,operator"-->
 For technical teams
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 ### In Classification Config
@@ -177,7 +177,7 @@ dev_segments = [
 // Build role-specific documentation portal
 const userType = getCurrentUser().role;
 const relevantDocs = docs.filter(doc =>
-  doc.frontmatter.werkcontext.segments.some(seg =>
+  doc.frontmatter.semcontext.segments.some(seg =>
     seg.audience_role.includes(userType)
   )
 );

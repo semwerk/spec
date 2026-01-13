@@ -115,7 +115,7 @@ Standard vocabulary for classifying documentation segments. Based on the Diataxi
 
 ```yaml
 ---
-werkcontext:
+semcontext:
   segments:
     - id: getting-started
       type: tutorial        # Learning-oriented
@@ -131,15 +131,15 @@ werkcontext:
 ## Usage in Segment Markers
 
 ```markdown
-<!--werkcontext:segment start key="overview" type="overview"-->
+<!--semcontext:segment start key="overview" type="overview"-->
 ## System Overview
 ...
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="quickstart" type="tutorial"-->
+<!--semcontext:segment start key="quickstart" type="tutorial"-->
 ## Quick Start
 ...
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 ## Classification Guidelines

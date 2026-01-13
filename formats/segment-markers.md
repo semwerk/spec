@@ -18,29 +18,29 @@ Segment markers are HTML comments embedded in markdown files that identify disti
 ### Basic Marker
 
 ```markdown
-<!--werkcontext:segment start key="overview"-->
+<!--semcontext:segment start key="overview"-->
 Content here...
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 ### Marker with Type
 
 ```markdown
-<!--werkcontext:segment start key="api-auth" type="reference"-->
+<!--semcontext:segment start key="api-auth" type="reference"-->
 ## Authentication API
 
 The authentication API uses JWT tokens...
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 ### Full Attributes
 
 ```markdown
-<!--werkcontext:segment start key="getting-started" type="tutorial" audience="developer,user"-->
+<!--semcontext:segment start key="getting-started" type="tutorial" audience="developer,user"-->
 # Getting Started
 
 Follow these steps to...
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 ## Attributes
@@ -58,7 +58,7 @@ Follow these steps to...
 ```markdown
 # User API
 
-<!--werkcontext:segment start key="create-user" type="reference" audience="developer"-->
+<!--semcontext:segment start key="create-user" type="reference" audience="developer"-->
 ## Create User
 
 **Endpoint:** `POST /api/users`
@@ -78,15 +78,15 @@ Follow these steps to...
   "email": "user@example.com"
 }
 ```
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="list-users" type="reference" audience="developer"-->
+<!--semcontext:segment start key="list-users" type="reference" audience="developer"-->
 ## List Users
 
 **Endpoint:** `GET /api/users`
 
 Returns a paginated list of users.
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 ### Tutorial with Multiple Segments
@@ -94,16 +94,16 @@ Returns a paginated list of users.
 ```markdown
 # Getting Started with Payments
 
-<!--werkcontext:segment start key="prerequisites" type="tutorial" audience="developer"-->
+<!--semcontext:segment start key="prerequisites" type="tutorial" audience="developer"-->
 ## Prerequisites
 
 Before you begin, ensure you have:
 - API key from the dashboard
 - Node.js 18+ installed
 - Basic understanding of REST APIs
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="installation" type="tutorial" audience="developer"-->
+<!--semcontext:segment start key="installation" type="tutorial" audience="developer"-->
 ## Installation
 
 Install the SDK:
@@ -111,9 +111,9 @@ Install the SDK:
 ```bash
 npm install @acme/payments
 ```
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="first-charge" type="tutorial" audience="developer"-->
+<!--semcontext:segment start key="first-charge" type="tutorial" audience="developer"-->
 ## Making Your First Charge
 
 Create a charge:
@@ -124,7 +124,7 @@ const charge = await payments.charges.create({
   currency: 'usd'
 });
 ```
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 ## Rules
@@ -135,11 +135,11 @@ Segments **cannot** be nested:
 
 ```markdown
 <!-- ❌ INVALID -->
-<!--werkcontext:segment start key="outer"-->
-  <!--werkcontext:segment start key="inner"-->
+<!--semcontext:segment start key="outer"-->
+  <!--semcontext:segment start key="inner"-->
   Content
-  <!--werkcontext:segment end-->
-<!--werkcontext:segment end-->
+  <!--semcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 ### 2. Key Uniqueness
@@ -148,13 +148,13 @@ Keys must be unique within a single file:
 
 ```markdown
 <!-- ❌ INVALID -->
-<!--werkcontext:segment start key="example"-->
+<!--semcontext:segment start key="example"-->
 First example
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="example"-->
+<!--semcontext:segment start key="example"-->
 Second example (duplicate key!)
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 ### 3. Balanced Markers
@@ -163,7 +163,7 @@ Every `start` must have a corresponding `end`:
 
 ```markdown
 <!-- ❌ INVALID -->
-<!--werkcontext:segment start key="incomplete"-->
+<!--semcontext:segment start key="incomplete"-->
 Content without end marker
 ```
 
@@ -209,9 +209,9 @@ developer_content = [
 
 ## Tools
 
-- **werkspec-ts**: Parse/validate segment markers
-- **werkspec-python**: Python parser
-- **werkspec-go**: Go parser
+- **semspec-ts**: Parse/validate segment markers
+- **semspec-python**: Python parser
+- **semspec-go**: Go parser
 
 ## See Also
 

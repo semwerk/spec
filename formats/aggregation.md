@@ -3,7 +3,7 @@
 **Version:** 1.0.0
 **Status:** Draft
 
-<!--werkcontext:segment start key="overview" type="overview" audience="developer,engineering"-->
+<!--semcontext:segment start key="overview" type="overview" audience="developer,engineering"-->
 ## Overview
 
 Aggregation enables automatic rollup of segment metadata to page level and project level. This creates a hierarchical view of semantic metadata without manual duplication.
@@ -31,9 +31,9 @@ Project
 - Calculate total token budgets
 - Build aggregated semantic entity maps
 - Project-level search/filtering
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="page-aggregation" type="reference" audience="developer"-->
+<!--semcontext:segment start key="page-aggregation" type="reference" audience="developer"-->
 ## Page-Level Aggregation
 
 ### Aggregation Rules
@@ -426,9 +426,9 @@ func AggregatePageMetadata(anno *ExternalAnnotations) *PageAggregation {
 	}
 }
 ```
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="project-aggregation" type="reference" audience="developer"-->
+<!--semcontext:segment start key="project-aggregation" type="reference" audience="developer"-->
 ## Project-Level Aggregation
 
 ### Project Aggregation Format
@@ -596,9 +596,9 @@ function aggregateProjectMetadata(
   };
 }
 ```
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="use-cases" type="howto" audience="developer,product"-->
+<!--semcontext:segment start key="use-cases" type="howto" audience="developer,product"-->
 ## Use Cases
 
 ### 1. Project-Wide Concept Index
@@ -680,9 +680,9 @@ const searchIndex = {
   })),
 };
 ```
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="caching" type="howto" audience="developer"-->
+<!--semcontext:segment start key="caching" type="howto" audience="developer"-->
 ## Caching and Incremental Updates
 
 ### Page-Level Caching
@@ -762,7 +762,7 @@ function incrementalProjectAggregation(
   return aggregateProjectMetadata([...unchangedAggs, ...changedAggs]);
 }
 ```
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
 ## See Also
 

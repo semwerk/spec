@@ -15,7 +15,7 @@ Defines customizable rules for automatic classification of documentation segment
 
 ## Location
 
-`.werkcontext/classifier.yaml` or use system defaults
+`.semcontext/classifier.yaml` or use system defaults
 
 ## Schema
 
@@ -169,7 +169,7 @@ inference:
 ### Custom Project Config
 
 ```yaml
-# .werkcontext/classifier.yaml
+# .semcontext/classifier.yaml
 # Extends system defaults with project-specific rules
 
 segment_types:
@@ -255,7 +255,7 @@ if inference.llm.enabled:
 
 ```typescript
 // Load config
-const config = loadClassifierConfig('.werkcontext/classifier.yaml');
+const config = loadClassifierConfig('.semcontext/classifier.yaml');
 
 // Classify heading
 const heading = "## How to Deploy";

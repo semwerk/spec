@@ -3,7 +3,7 @@
 **Version:** 1.0.0
 **Status:** Draft
 
-<!--werkcontext:segment start key="overview" type="overview" audience="developer"-->
+<!--semcontext:segment start key="overview" type="overview" audience="developer"-->
 ## Overview
 
 All three annotation methods (inline markers, frontmatter, external annotations) support the same fields. This document shows field parity across methods.
@@ -14,15 +14,15 @@ All three annotation methods (inline markers, frontmatter, external annotations)
 3. **External annotations** - `.semwerk.anno.json` file
 
 **Rule:** NEVER use inline markers + frontmatter together in the same file.
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="field-comparison" type="reference" audience="developer"-->
+<!--semcontext:segment start key="field-comparison" type="reference" audience="developer"-->
 ## Field Comparison
 
 ### Inline Markers
 
 ```markdown
-<!--werkcontext:segment start
+<!--semcontext:segment start
   key="oauth-setup"
   type="howto"
   audience="developer,operator"
@@ -30,7 +30,7 @@ All three annotation methods (inline markers, frontmatter, external annotations)
 ## OAuth Setup
 
 Content here...
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 **Supported fields:**
@@ -46,7 +46,7 @@ Content here...
 
 ```yaml
 ---
-werkcontext:
+semcontext:
   segments:
     - id: oauth-setup
       type: howto
@@ -117,9 +117,9 @@ Content here...
 - PLUS: byte_range, line_range, segment_checksum, segment_ref, can_edit, source_checksum
 
 **Benefit:** Most expressive, supports all features
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="field-parity-table" type="reference" audience="developer"-->
+<!--semcontext:segment start key="field-parity-table" type="reference" audience="developer"-->
 ## Field Parity Matrix
 
 | Field | Inline Marker | Frontmatter | External Anno | Why Supported |
@@ -165,6 +165,6 @@ Content here...
 - PLUS: checksums (file + segment)
 - PLUS: explicit heading and segment_ref
 - Most powerful, for files you can't modify
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="examples" type="example" audience="developer"-->
+<!--semcontext:segment start key="examples" type="example" audience="developer"-->

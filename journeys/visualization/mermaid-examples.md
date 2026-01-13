@@ -339,7 +339,7 @@ graph LR
 ## TypeScript Generator
 
 ```typescript
-import { Journey } from '@semwerk/werkspec';
+import { Journey } from '@semwerk/semspec';
 
 function generateMermaid(journey: Journey): string {
   let mermaid = 'graph TD\n';

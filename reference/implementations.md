@@ -4,10 +4,10 @@ Official parsers and validators for Semwerk specifications.
 
 ## Maintained by Semwerk
 
-### werkspec-ts (TypeScript/npm)
+### semspec-ts (TypeScript/npm)
 
-**Repository:** https://github.com/semwerk/werkspec-ts
-**Package:** [@semwerk/werkspec](https://www.npmjs.com/package/@semwerk/werkspec)
+**Repository:** https://github.com/semwerk/semspec-ts
+**Package:** [@semwerk/semspec](https://www.npmjs.com/package/@semwerk/semspec)
 **Status:** Active development
 **Version:** 0.1.0
 
@@ -21,17 +21,17 @@ Official parsers and validators for Semwerk specifications.
 
 **Installation:**
 ```bash
-npm install @semwerk/werkspec
+npm install @semwerk/semspec
 ```
 
-**Documentation:** [README](https://github.com/semwerk/werkspec-ts/blob/main/README.md)
+**Documentation:** [README](https://github.com/semwerk/semspec-ts/blob/main/README.md)
 
 ---
 
-### werkspec-python (Python/pip)
+### semspec-python (Python/pip)
 
-**Repository:** https://github.com/semwerk/werkspec-python
-**Package:** [werkspec](https://pypi.org/project/werkspec/)
+**Repository:** https://github.com/semwerk/semspec-python
+**Package:** [semspec](https://pypi.org/project/semspec/)
 **Status:** Active development
 **Version:** 0.1.0
 
@@ -45,17 +45,17 @@ npm install @semwerk/werkspec
 
 **Installation:**
 ```bash
-pip install werkspec
+pip install semspec
 ```
 
-**Documentation:** [README](https://github.com/semwerk/werkspec-python/blob/main/README.md)
+**Documentation:** [README](https://github.com/semwerk/semspec-python/blob/main/README.md)
 
 ---
 
-### werkspec-go (Go module)
+### semspec-go (Go module)
 
-**Repository:** https://github.com/semwerk/werkspec-go
-**Module:** github.com/semwerk/werkspec-go
+**Repository:** https://github.com/semwerk/semspec-go
+**Module:** github.com/semwerk/semspec-go
 **Status:** Active development
 **Version:** 0.1.0
 
@@ -69,10 +69,10 @@ pip install werkspec
 
 **Installation:**
 ```bash
-go get github.com/semwerk/werkspec-go
+go get github.com/semwerk/semspec-go
 ```
 
-**Documentation:** [README](https://github.com/semwerk/werkspec-go/blob/main/README.md)
+**Documentation:** [README](https://github.com/semwerk/semspec-go/blob/main/README.md)
 
 ---
 
@@ -89,7 +89,7 @@ None yet. Want to contribute an implementation in another language? See [CONTRIB
 
 ## Specification Support Matrix
 
-| Specification | werkspec-ts | werkspec-python | werkspec-go |
+| Specification | semspec-ts | semspec-python | semspec-go |
 |--------------|-------------|-----------------|-------------|
 | Linkage Mapping | ✓ | ✓ | ✓ |
 | Segment Markers | ✓ | ✓ | ✓ |

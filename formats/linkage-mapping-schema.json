@@ -27,7 +27,7 @@
       "properties": {
         "source": {
           "type": "string",
-          "description": "How this mapping was generated (e.g. 'werkcode-analyzer', 'manual')"
+          "description": "How this mapping was generated (e.g. 'semcode-analyzer', 'manual')"
         }
       }
     },

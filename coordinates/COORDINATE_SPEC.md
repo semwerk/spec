@@ -3,7 +3,7 @@
 **Version:** 1.0.0
 **Status:** Draft
 
-<!--werkcontext:segment start key="overview" type="overview" audience="developer,engineering"-->
+<!--semcontext:segment start key="overview" type="overview" audience="developer,engineering"-->
 ## Overview
 
 A unified, ID-based reference system for all resources: content, code, assets, projects, versions, journeys, and concepts.
@@ -16,9 +16,9 @@ The coordinate system enables tools to reference any resource with:
 - **Portability** - Works across environments without absolute paths
 
 **Coordinates reference:** See also [content:@doc-linkage-mapping/overview](#) and [content:@doc-segment-markers/syntax](#)
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="format-specification" type="reference" audience="developer"-->
+<!--semcontext:segment start key="format-specification" type="reference" audience="developer"-->
 ## Format
 
 ### Basic Format
@@ -87,9 +87,9 @@ content:@<id>@<version>/<segment>.<subheading>#<checksum>
 | `term` | `term_*` | Terminology | `term:@term_jwt` |
 
 **Full list:** content, code, asset, project, version, journey, concept, persona, task, problem, solution, outcome, validation, next_step, impact, feature, term (17 types)
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="examples" type="example" audience="developer"-->
+<!--semcontext:segment start key="examples" type="example" audience="developer"-->
 ## Examples
 
 ### Content (User-Facing Documentation, Marketing)
@@ -193,9 +193,9 @@ Checksum: sha256:abc123def456
 ```
 
 **Related specifications:** [content:@doc-journey-graph/nodes](#), [content:@doc-concept-definition/relationships](#)
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="validation-rules" type="reference" audience="developer"-->
+<!--semcontext:segment start key="validation-rules" type="reference" audience="developer"-->
 ## Validation Rules
 
 **Valid coordinates:**
@@ -231,9 +231,9 @@ https://docs.google.com/document/d/abc123               ✗ URL
 - `(?:@[a-z0-9.-]+)?` - Optional version
 - `(?:\/[a-z0-9._-]+)?` - Optional segment with subheadings
 - `(?:#sha256:[a-f0-9]+)?` - Optional checksum (always last)
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
-<!--werkcontext:segment start key="use-cases" type="howto" audience="developer,product"-->
+<!--semcontext:segment start key="use-cases" type="howto" audience="developer,product"-->
 ## Use Cases
 
 ### 1. Version-Specific References
@@ -286,11 +286,11 @@ journey:@jrn_onboarding@v2.0.0/setup-auth
 ```
 
 **Cross-references in this doc:** [content:@doc-journey-graph/coordinates](#), [content:@doc-concept-graph/references](#)
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 
 ## Migration
 
-### From Current Werkcontext
+### From Current Semcontext
 
 ```yaml
 # Old

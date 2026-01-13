@@ -405,7 +405,7 @@ For ecosystem adoption, entities only need:
 - `content_refs` - Documentation links
 - `metadata.status` - Lifecycle state
 
-**Optional (Werkcontext-specific):**
+**Optional (Semcontext-specific):**
 - Priority scoring
 - Detailed metadata
 - Internal tracking fields

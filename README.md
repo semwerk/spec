@@ -55,15 +55,15 @@ Enable third-party developers to build tools that work with Semwerk data formats
 
 ## Reference Implementations
 
-- **[@semwerk/werkspec](https://github.com/semwerk/werkspec-ts)** - TypeScript/npm
-- **[werkspec](https://github.com/semwerk/werkspec-python)** - Python/pip
-- **[werkspec-go](https://github.com/semwerk/werkspec-go)** - Go module
+- **[@semwerk/semspec](https://github.com/semwerk/semspec-ts)** - TypeScript/npm
+- **[semspec](https://github.com/semwerk/semspec-python)** - Python/pip
+- **[semspec-go](https://github.com/semwerk/semspec-go)** - Go module
 
 ## Quick Start
 
 ### Parse Linkage Mapping (TypeScript)
 ```typescript
-import { parseLinkage } from '@semwerk/werkspec';
+import { parseLinkage } from '@semwerk/semspec';
 
 const linkage = parseLinkage(yamlContent);
 console.log(linkage.code_to_assets);
@@ -71,7 +71,7 @@ console.log(linkage.code_to_assets);
 
 ### Parse Segment Markers (Python)
 ```python
-from werkspec import parse_segments
+from semspec import parse_segments
 
 segments = parse_segments(markdown_content)
 for segment in segments:
@@ -80,10 +80,10 @@ for segment in segments:
 
 ### Parse Frontmatter (Go)
 ```go
-import "github.com/semwerk/werkspec-go/frontmatter"
+import "github.com/semwerk/semspec-go/frontmatter"
 
 fm, err := frontmatter.Parse(content)
-fmt.Println(fm.Werkcontext.Segments)
+fmt.Println(fm.Semcontext.Segments)
 ```
 
 ## Ecosystem

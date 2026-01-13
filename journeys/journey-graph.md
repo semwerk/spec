@@ -399,7 +399,7 @@ journey:@jrn_onboarding@v2.0.0/node-setup       # Version + node
 ```typescript
 // Define journey in product tool
 // Export as YAML
-// Import into werkcontext for tracking
+// Import into semcontext for tracking
 const journey = parseJourney('onboarding.yaml');
 visualize(journey);
 ```
@@ -408,7 +408,7 @@ visualize(journey);
 
 ```typescript
 // Agent understands user context
-const journey = parseJourney('.werkcontext/journey.yaml');
+const journey = parseJourney('.semcontext/journey.yaml');
 const currentNode = journey.nodes.find(n => n.key === 'setup');
 const nextSteps = getConnectedNodes(currentNode);
 

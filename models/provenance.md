@@ -126,7 +126,7 @@ segment:
 
 ```markdown
 ---
-werkcontext:
+semcontext:
   segments:
     - id: overview
       type: overview              # Asserted by author
@@ -135,9 +135,9 @@ werkcontext:
 
 # Documentation
 
-<!--werkcontext:segment start key="overview" type="overview"-->
+<!--semcontext:segment start key="overview" type="overview"-->
 Content here (marker is assertion)
-<!--werkcontext:segment end-->
+<!--semcontext:segment end-->
 ```
 
 Metadata in frontmatter or markers is implicitly `asserted` with:
@@ -226,7 +226,7 @@ def quality_score(metadata):
 
 ```bash
 # Regenerate only inferred metadata (keep assertions)
-werkcode analyze --regenerate-inferred
+semcode analyze --regenerate-inferred
 ```
 
 ## Validation
