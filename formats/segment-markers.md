@@ -43,6 +43,31 @@ Follow these steps to...
 <!--semcontext:segment end-->
 ```
 
+### With Token Budgets (Inline)
+
+Token budgets can be specified inline when frontmatter is not used or for quick annotations:
+
+```markdown
+<!--semcontext:segment start key="api-overview" type="reference" gen-max="1000" gen-min="200"-->
+## API Overview
+
+...
+<!--semcontext:segment end-->
+```
+
+### Outline Placeholder
+
+For outline-first workflows, use the placeholder marker to indicate sections awaiting generation:
+
+```markdown
+<!--semcontext:segment start key="authentication" type="reference" gen-max="800" gen-min="150"-->
+## Authentication
+
+<!--semcontext:outline-placeholder key="authentication"-->
+
+<!--semcontext:segment end-->
+```
+
 ## Attributes
 
 | Attribute | Required | Description | Example Values |
@@ -50,6 +75,10 @@ Follow these steps to...
 | `key` | Yes | Unique identifier within this document | `"overview"`, `"api-auth"`, `"troubleshooting-errors"` |
 | `type` | No | Segment type | `"overview"`, `"howto"`, `"reference"`, `"tutorial"`, `"faq"`, `"example"` |
 | `audience` | No | Target audience (comma-separated) | `"developer"`, `"user,operator"`, `"admin"` |
+| `gen-max` | No | Maximum tokens for generation (inline shorthand for `generate.max_tokens`) | `"1000"`, `"500"` |
+| `gen-min` | No | Minimum tokens for generation (inline shorthand for `generate.min_tokens`) | `"200"`, `"100"` |
+
+**Note:** When both frontmatter and inline attributes are present, frontmatter takes precedence. Inline attributes are useful for quick annotations or when frontmatter is not practical.
 
 ## Examples
 
