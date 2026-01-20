@@ -1,0 +1,440 @@
+openapi: 3.0.0
+info:
+  title: SemPress Agentic API
+  version: 1.0.0
+  description: |
+    Unified agentic protocol for SemPress documentation assistants.
+
+    Implemented by:
+    - sempress-server: Local agent with direct database access
+    - assistant-server: Remote agent with BotKit tools and advanced features
+
+    Both backends provide identical REST interface for seamless switching.
+
+servers:
+  - url: http://localhost:8080
+    description: Local development (sempress-server)
+  - url: https://assistant.semwerk.ai
+    description: Production (assistant-server)
+
+paths:
+  /mcp/documents:
+    get:
+      summary: List available documents
+      description: Returns all documents available to the agent backend
+      operationId: listDocuments
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+            minimum: 1
+            maximum: 1000
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: published_only
+          in: query
+          schema:
+            type: boolean
+            default: true
+        - name: public_only
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: List of documents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentListResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /mcp/tools:
+    get:
+      summary: List available agent tools
+      description: Returns tools registered with the agent backend
+      operationId: listTools
+      responses:
+        '200':
+          description: List of tools
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolListResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /mcp/documents/generate:
+    post:
+      summary: Generate snippet for a specific document
+      description: Ask the agent to generate a snippet grounded in a specific document
+      operationId: generateSnippet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateSnippetRequest'
+      responses:
+        '200':
+          description: Generated snippet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateSnippetResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /mcp/documents/rag:
+    post:
+      summary: Retrieval augmented generation query
+      description: Ask the agent an open-ended question with automatic retrieval
+      operationId: ragQuery
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RagQueryRequest'
+      responses:
+        '200':
+          description: RAG query response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RagQueryResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    DocumentSummary:
+      type: object
+      required:
+        - slug
+        - title
+      properties:
+        slug:
+          type: string
+          description: Unique document identifier
+          example: getting-started
+        title:
+          type: string
+          description: Human-friendly document title
+          example: Getting Started Guide
+        description:
+          type: string
+          nullable: true
+          description: Optional short description
+          example: Quick start guide for new users
+        contentType:
+          type: string
+          nullable: true
+          description: Content type classification
+          example: tutorial
+        tags:
+          type: array
+          items:
+            type: string
+          description: Document tags
+          example: [basics, onboarding]
+        url:
+          type: string
+          nullable: true
+          description: Canonical URL
+          example: https://docs.example.com/getting-started
+
+    DocumentListResponse:
+      type: object
+      required:
+        - documents
+        - version
+      properties:
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentSummary'
+        total:
+          type: integer
+          description: Total count (if pagination used)
+        version:
+          type: string
+          description: API version
+          example: "1.0"
+
+    ToolSpec:
+      type: object
+      required:
+        - name
+        - description
+      properties:
+        name:
+          type: string
+          description: Tool identifier
+          example: search_segments
+        description:
+          type: string
+          description: Tool description
+          example: Search documentation segments
+        inputSchema:
+          type: object
+          description: JSON Schema for tool input
+          additionalProperties: true
+
+    ToolListResponse:
+      type: object
+      required:
+        - tools
+        - version
+      properties:
+        tools:
+          type: array
+          items:
+            $ref: '#/components/schemas/ToolSpec'
+        version:
+          type: string
+          example: "1.0"
+
+    GenerateSnippetRequest:
+      type: object
+      required:
+        - slug
+        - question
+      properties:
+        slug:
+          type: string
+          description: Document slug to ground response in
+          example: getting-started
+        question:
+          type: string
+          description: Natural language question
+          example: How do I install the CLI?
+        language:
+          type: string
+          nullable: true
+          description: Preferred language for code snippets
+          example: bash
+        sessionId:
+          type: string
+          nullable: true
+          description: Optional session identifier
+          example: sess_abc123
+
+    SourceReference:
+      type: object
+      required:
+        - slug
+      properties:
+        slug:
+          type: string
+          example: getting-started
+        title:
+          type: string
+          nullable: true
+          example: Getting Started Guide
+        url:
+          type: string
+          nullable: true
+          example: https://docs.example.com/getting-started#installation
+        excerpt:
+          type: string
+          nullable: true
+          description: Relevant excerpt from source
+        relevanceScore:
+          type: number
+          nullable: true
+          description: Relevance score (0.0-1.0)
+          example: 0.95
+
+    CodeSnippet:
+      type: object
+      required:
+        - code
+      properties:
+        language:
+          type: string
+          nullable: true
+          example: bash
+        code:
+          type: string
+          example: npm install -g @semwerk/cli
+        description:
+          type: string
+          nullable: true
+          example: Install via npm
+        path:
+          type: string
+          nullable: true
+          description: File path where code should be applied
+
+    GenerateSnippetResponse:
+      type: object
+      required:
+        - answer
+        - version
+      properties:
+        answer:
+          type: string
+          description: Natural language answer
+          example: To install the CLI, run npm install -g @semwerk/cli
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceReference'
+        snippets:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeSnippet'
+        sessionId:
+          type: string
+          nullable: true
+        version:
+          type: string
+          example: "1.0"
+
+    RagQueryRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: Natural language query
+          example: What are the best practices for error handling?
+        filters:
+          type: object
+          nullable: true
+          properties:
+            tags:
+              type: array
+              items:
+                type: string
+            contentType:
+              type: string
+            category:
+              type: string
+        sessionId:
+          type: string
+          nullable: true
+        maxSources:
+          type: integer
+          default: 5
+          minimum: 1
+          maximum: 20
+
+    RagQueryResponse:
+      type: object
+      required:
+        - answer
+        - version
+      properties:
+        answer:
+          type: string
+          description: Natural language answer
+        citations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SourceReference'
+        snippets:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeSnippet'
+        sessionId:
+          type: string
+          nullable: true
+        metadata:
+          type: object
+          nullable: true
+          description: Additional response metadata
+          properties:
+            tokensUsed:
+              type: integer
+            toolsInvoked:
+              type: array
+              items:
+                type: string
+            responseTimeMs:
+              type: integer
+        version:
+          type: string
+          example: "1.0"
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          required:
+            - code
+            - message
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+              example: document_not_found
+            message:
+              type: string
+              description: Human-readable error message
+              example: Document with slug 'getting-started' not found
+            retryable:
+              type: boolean
+              description: Whether the request can be retried
+              default: false
+        version:
+          type: string
+          example: "1.0"
