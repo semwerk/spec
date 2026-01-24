@@ -13,6 +13,7 @@ Enable third-party developers to build tools that work with Semwerk data formats
 - **[Segment Markers](formats/segment-markers.md)** - HTML comment syntax for marking doc sections
 - **[Segment Versioning](formats/segment-versioning.md)** - Version metadata for segments (inline-first, semver/latest)
 - **[Frontmatter](formats/frontmatter.md)** - YAML metadata schema for documents
+- **[Specbook Transform](formats/specbook-transform.md)** - Portable spec folder layout + run artifacts for turning raw business inputs into specbook pages
 
 ### 📚 Standard Vocabularies
 - **[Segment Taxonomy](taxonomies/segments.md)** - Document types (overview, howto, reference, api, etc.)

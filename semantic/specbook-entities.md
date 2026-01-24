@@ -412,6 +412,7 @@ For ecosystem adoption, entities only need:
 
 ## See Also
 
+- [Feature Entities](./feature-entities.md) - Feature and FeatureGroup with meta-level fields
 - [Journey Graph](../journeys/journey-graph.md) - Referencing entities in journeys
 - [Concept Definition](./concept.md) - Semantic concepts
 - [Coordinate System](../coordinates/COORDINATE_SPEC.md) - Reference format
